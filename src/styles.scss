@@ -1,1 +1,73 @@
-/* You can add global styles to this file, and also import other style files */
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+// Typography
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap&subset=cyrillic,cyrillic-ext,latin-ext');
+
+html {
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: 'PT Sans', sans-serif;
+}
+
+body, input, textarea, option, select, table, form {
+    font: inherit;
+}
+
+@media ( min-width: 768px ) {
+    html { font-size: var(--font-size-body-larger, 16px); }
+}
+
+@media ( min-width: 1024px ) {
+    html { font-size: var(--font-size-body-big, 18px); }
+}
+
+@media ( min-width: 1600px ) {
+    html { font-size: var(--font-size-body-huge, 20px); }
+}
+
+h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+    padding-bottom: 0.5em;
+}
+
+h1 { font-size: 2.20em; }
+
+h2 { font-size: 2.10em; }
+
+h3 { font-size: 1.75em; }
+
+h4 { font-size: 1.45em; }
+
+h5 { font-size: 1.20em; }
+
+h6 { font-size: 1.00em; }
+
+p, ol, ul {
+    padding-bottom: 1em;
+}
+
+// Variables
+:root {
+    --site-max-width: 1000px;
+
+    --background-header: #aaa;
+    --background-footer: #222;
+}
