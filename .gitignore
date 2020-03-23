@@ -1,2 +1,7 @@
-# Google App Engine generated folder
-appengine-generated/
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
