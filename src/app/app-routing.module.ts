@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ContentComponent } from './pages/content/content.component';
 
 const routes: Routes = [
     { path: '', loadChildren: () => import('./pages/content/content.module').then(m => m.ContentModule) },
