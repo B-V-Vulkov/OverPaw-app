@@ -13,11 +13,9 @@ export class AuthenticationService {
 
     constructor(private httpService: HttpClient) { }
 
-    public post() {
-        const url = `http://localhost:9207/api/Account/login`;
-
-        localStorage.setItem('Test', 'TestTocen');
-
+    public login() {
+        const url = `https://localhost:44387/api/Account/login`;
+        
         const data: any = {
             UserName: 'Bobi',
             UserPass: 'dsdsdsd@sddff'
@@ -27,11 +25,7 @@ export class AuthenticationService {
     }
 
     public get() {
-        const url = `http://localhost:9207/api/Account/get`;
+        const url = `https://localhost:44387/api/Account/get`;
         return this.httpService.get<number>(url);
     }
-
-
-
-
 }

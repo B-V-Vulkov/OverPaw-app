@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { HttpRequest } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -23,10 +24,20 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  post() {
-    this.authenticationService.post().subscribe(result => {
+  login() {
+    this.authenticationService.login().subscribe(result => {
       console.log(result);
     });
   }
+
+  private addToken(request: HttpRequest<any>, token: string) {
+    return request.clone({
+        setHeaders: {
+            'Authorization': `Bearer ${token}`,
+            'Content-type': 'application/json',
+
+        }
+    });
+}
 
 }
