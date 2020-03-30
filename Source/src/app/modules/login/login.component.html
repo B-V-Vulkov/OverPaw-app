@@ -1,3 +1,11 @@
-<p>login works!</p>
-<button (click)="get()">Send</button>
-<button (click)="login()">login</button>
+<form [formGroup]="loginForm" (submit)="onSubmitLoginForm()">
+
+    <div *ngIf="isInvalidLoginData">Invalid email or password</div>
+
+    <input type="email" placeholder="email" formControlName="email">
+    <input type="password" formControlName="password">
+    <button type="submit" [disabled]="loginForm.invalid">submit</button>
+</form>
+
+
+<button (click)="test()">Test</button>

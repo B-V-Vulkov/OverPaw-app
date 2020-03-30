@@ -4,7 +4,13 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44313/',
+
+  // Api
+  apiUrl: 'https://localhost:44387/api',
+
+  // Controllers
+  accountControler: "account"
+
 };
 
 /*

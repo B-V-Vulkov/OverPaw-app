@@ -1,43 +1,57 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { HttpRequest } from '@angular/common/http';
+import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  public test: string;
+    public loginForm: FormGroup;
 
-  constructor(private authenticationService: AuthenticationService) { }
+    public isInvalidLoginData: boolean = false;
 
-  ngOnInit(): void {
+    constructor(
+        private router: Router,
+        private formBuilder: FormBuilder,
+        private accountService: AccountService) {
 
-  }
+        this.loginForm = this.formBuilder.group({
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required]]
+        });
+    }
 
-  get() {
-    this.authenticationService.get().subscribe(result => {
-      console.log(result);
-    });
-  }
+    ngOnInit(): void {
 
-  login() {
-    this.authenticationService.login().subscribe(result => {
-      console.log(result);
-    });
-  }
+    }
 
-  private addToken(request: HttpRequest<any>, token: string) {
-    return request.clone({
-        setHeaders: {
-            'Authorization': `Bearer ${token}`,
-            'Content-type': 'application/json',
+    onSubmitLoginForm() {
+        console.log(this.loginForm.value);
+        this.accountService.login(this.loginForm.value).subscribe(result => {
 
-        }
-    });
-}
+            if (result.status == 1) {
+                localStorage.setItem('jwt', result.token);
+                this.router.navigate(['']);
+            }
+            else {
+                this.isInvalidLoginData = true;
+            }
+        });
+    }
+
+    test() {
+
+        this.accountService.test().subscribe(result => {
+            console.log(result);
+        })
+    }
+
+
+
 
 }

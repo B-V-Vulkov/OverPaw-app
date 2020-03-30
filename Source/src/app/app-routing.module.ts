@@ -20,7 +20,7 @@ const routes: Routes = [
         loadChildren: () => import('./modules/register/register.module').then(m => m.RegisterModule)
     },
     {
-        path: '500',
+        path: 'serverError',
         loadChildren: () => import('./modules/server-error/server-error.module').then(m => m.ServerErrorModule)
     },
     {

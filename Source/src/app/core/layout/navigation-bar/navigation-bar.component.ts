@@ -13,11 +13,15 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToProfile() {
+  navigateToProfile() {
     this.router.navigate(['./profile/ivan']);
   }
 
-  goToHome(){
+  navigateToHome(){
     this.router.navigate(['']);
+  }
+
+  navigateToLogin(){
+    this.router.navigate(['./login']);
   }
 }
