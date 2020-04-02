@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/server-error/server-error.module').then(m => m.ServerErrorModule)
     },
     {
+        path: 'notFound',
+        loadChildren: () => import('./modules/not-found/not-found.module').then(m => m.NotFoundModule)
+    },
+    {
         path: '**',
         loadChildren: () => import('./modules/not-found/not-found.module').then(m => m.NotFoundModule)
     },
