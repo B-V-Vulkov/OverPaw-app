@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+import { accountPageAnimation } from 'src/app/core/animations/account-page.animation';
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+    selector: 'app-account',
+    templateUrl: './account.component.html',
+    styleUrls: ['./account.component.scss'],
+    animations: [accountPageAnimation]
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    prepareRoute(outlet: RouterOutlet) {
+        return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    }
 }
