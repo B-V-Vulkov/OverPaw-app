@@ -1,12 +1,11 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnInit {
 
@@ -31,7 +30,11 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  onSubmitLoginForm() {
+  onSubmitRegisterForm() {
+  }
+
+  registerFormControl() {
+    return this.registerForm.controls;
   }
 
   navigateToLogin() {
