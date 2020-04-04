@@ -12,17 +12,35 @@
             <h6 class="mb-2">Create Account</h6>
             <form [formGroup]="registerForm" (submit)="onSubmitRegisterForm()">
 
-                <div class="form-group has-success">
-                    <div>Email</div>
-                    <input placeholder="myemail@email.com" type="text" value="correct value" class="form-control" formControlName="password">
-                    <div class="valid-feedback" *ngIf="(registerForm.controls.password.invalid && registerForm.controls.password.touched)">Success! You've done it.</div>
+                <div class="form-group">
+                    <span>First Name*</span>
+                    <input class="form-control" type="text" placeholder="Enter your first name"
+                        formControlName="firstName" [ngClass]="addValidationClass(registerForm.controls.firstName)">
+                        <div class="invalid-feedback" *ngIf="isInvalidAndTouched(registerForm.controls.firstName)">Sorry, that username's taken. Try another?</div>
                 </div>
-<!-- 
-                <div class="form-group has-danger">
+
+
+
+                <!-- has-danger -->
+
+                <div class="form-group">
+                    <span>Family Name*</span>
+                    <input class="form-control" type="text" placeholder="Enter your family name"
+                        formControlName="familyName">
+                </div>
+
+                <div class="form-group ">
+                    <div>Email</div>
+                    <input placeholder="myemail@email.com" type="text" value="correct value" class="form-control"
+                        formControlName="password">
+
+                </div>
+
+                <div class="form-group has-success has-danger">
                     <label class="form-control-label" for="inputDanger1">Invalid input</label>
                     <input type="text" value="wrong value" class="form-control is-invalid" id="inputInvalid">
-                    <div class="invalid-feedback">Sorry, that username's taken. Try another?</div>
-                </div> -->
+
+                </div>
 
 
                 <div class="form-group">
@@ -37,25 +55,17 @@
 
                 <div class="form-group">
                     <span>Confirm password</span>
-                    <input class="form-control" type="email" placeholder="Pleace confirm your password" formControlName="email">
+                    <input class="form-control" type="email" placeholder="Pleace confirm your password"
+                        formControlName="email">
                 </div>
 
-                <div class="form-group">
-                    <span>First Name</span>
-                    <input class="form-control" type="email" placeholder="Enter your first name" formControlName="email">
-                </div>
-
-                <div class="form-group">
-                    <span>Family Name</span>
-                    <input class="form-control" type="email" placeholder="Enter your family name" formControlName="email">
-                </div>
 
 
 
                 <p class="text-danger" *ngIf="isInvalidLoginData">Invalid email or password.</p>
 
-                <button type="submit" class="btn btn-primary w-100 mt-2 mb-2"
-                    [disabled]="registerForm.invalid">Create Account</button>
+                <button type="submit" class="btn btn-primary w-100 mt-2 mb-2" [disabled]="registerForm.invalid">Create
+                    Account</button>
 
                 <hr>
 
