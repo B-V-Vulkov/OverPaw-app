@@ -1,4 +1,4 @@
-export class loginUserResponseModel {
+export class loginResponseModel {
     status: number
     token: string;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/core/services/account.service';
+import { ThrowStmt } from '@angular/compiler';
 
 const namePattern: RegExp = /^[^\s|0-9|\'|\"|\`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\-|\+|\=|\[|\]|\{|\}|\,|\.|\<|\>|\?|\/|\\|\'|\"|\;|\:|\№].*$/;
 const emailPattern: RegExp = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
@@ -13,9 +14,13 @@ const usernamePattern: RegExp = /^[^\s | \\ | \/].*$/;
 })
 export class RegisterComponent implements OnInit {
 
+    public registerForm: FormGroup;
+
+    public isEmailTaken: boolean;
     public isUsernameTaken: boolean;
 
-    public registerForm: FormGroup;
+    public email: string;
+    public userName: string;
 
     public isInvalidLoginData: boolean = false;
 
@@ -34,8 +39,26 @@ export class RegisterComponent implements OnInit {
         });
     }
 
-
     ngOnInit(): void {
+    }
+
+    onSubmitRegisterForm() {
+
+        this.accountService.register(this.registerForm.value).subscribe(result => {
+            if (result.status == 1) {
+                this.navigateToLogin();
+            }
+            else {
+                this.isEmailTaken = result.isEmailTaken;
+                this.isUsernameTaken = result.isUsenameTaken;
+                this.email = this.registerForm.controls.email.value;
+                this.userName = this.registerForm.controls.username.value;
+            }
+        });
+    }
+
+    navigateToLogin() {
+        this.router.navigate(['./account/login']);
     }
 
     addValidationClass(control: AbstractControl): string {
@@ -48,25 +71,14 @@ export class RegisterComponent implements OnInit {
         return 'is-invalid';
     }
 
-    isInvalidAndTouched(control: AbstractControl): boolean {
-        return (control.invalid && control.touched);
+    addConfirmPasswordValidationClass() {
+        let control: AbstractControl = this.registerForm.controls.confirmPassword;
+        if (!control.touched || this.registerForm.controls.password.value == null) {
+            return '';
+        }
+        if (control.value === this.registerForm.controls.password.value) {
+            return 'is-valid';
+        }
+        return 'is-invalid';
     }
-
-    test(abstractControl: AbstractControl): boolean {
-        return (abstractControl.valid && abstractControl.touched);
-    }
-
-    onSubmitRegisterForm() {
-    }
-
-    registerFormControl() {
-        return this.registerForm.controls;
-    }
-
-    navigateToLogin() {
-        this.router.navigate(['./account/login']);
-    }
-
-
-
 }
