@@ -3,11 +3,17 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/core/services/account.service';
 
+const namePattern: RegExp = /^[^\s|0-9|\'|\"|\`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\-|\+|\=|\[|\]|\{|\}|\,|\.|\<|\>|\?|\/|\\|\'|\"|\;|\:|\№].*$/;
+const emailPattern: RegExp = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+const usernamePattern: RegExp = /^[^\s | \\ | \/].*$/;
+
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnInit {
+
+    public isUsernameTaken: boolean;
 
     public registerForm: FormGroup;
 
@@ -19,13 +25,15 @@ export class RegisterComponent implements OnInit {
         private accountService: AccountService) {
 
         this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            familyName: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required]],
-            isSelectedRememberMe: ['']
+            firstName: [null, [Validators.required, Validators.pattern(namePattern)]],
+            familyName: [null, [Validators.required, Validators.pattern(namePattern)]],
+            email: [null, [Validators.required, Validators.pattern(emailPattern)]],
+            username: [null, [Validators.required, Validators.pattern(usernamePattern)]],
+            password: [null, [Validators.required, Validators.minLength(6)]],
+            confirmPassword: [null, [Validators.required, Validators.minLength(6)]]
         });
     }
+
 
     ngOnInit(): void {
     }

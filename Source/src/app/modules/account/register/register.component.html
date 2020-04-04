@@ -11,61 +11,72 @@
             <hr>
             <h6 class="mb-2">Create Account</h6>
             <form [formGroup]="registerForm" (submit)="onSubmitRegisterForm()">
-
                 <div class="form-group">
-                    <span>First Name*</span>
+                    <label class="mb-0">First Name*</label>
                     <input class="form-control" type="text" placeholder="Enter your first name"
                         formControlName="firstName" [ngClass]="addValidationClass(registerForm.controls.firstName)">
-                        <div class="invalid-feedback" *ngIf="isInvalidAndTouched(registerForm.controls.firstName)">Sorry, that username's taken. Try another?</div>
+                    <div class="invalid-feedback">
+                        First name is required and cannot start with space, number or any of the special characters (!,
+                        @, #, $ etc.).
+                    </div>
                 </div>
-
-
-
-                <!-- has-danger -->
-
                 <div class="form-group">
-                    <span>Family Name*</span>
+                    <label class="mb-0">Family Name*</label>
                     <input class="form-control" type="text" placeholder="Enter your family name"
-                        formControlName="familyName">
+                        formControlName="familyName" [ngClass]="addValidationClass(registerForm.controls.familyName)">
+                    <div class="invalid-feedback">
+                        Family name is required and cannot start with space, number or any of the special characters (!,
+                        @, #, $ etc.).
+                    </div>
                 </div>
-
-                <div class="form-group ">
-                    <div>Email</div>
-                    <input placeholder="myemail@email.com" type="text" value="correct value" class="form-control"
-                        formControlName="password">
-
-                </div>
-
-                <div class="form-group has-success has-danger">
-                    <label class="form-control-label" for="inputDanger1">Invalid input</label>
-                    <input type="text" value="wrong value" class="form-control is-invalid" id="inputInvalid">
-
-                </div>
-
-
                 <div class="form-group">
-                    <span>Username</span>
-                    <input class="form-control" type="email" placeholder="Enter username" formControlName="email">
+                    <label class="mb-0">Email*</label>
+                    <input class="form-control" type="email" placeholder="Enter your email" formControlName="email"
+                        [ngClass]="addValidationClass(registerForm.controls.email)">
+                    <div class="invalid-feedback">
+                        Invalid email format.
+                    </div>
+                    <div class="invalid-feedback d-block" *ngIf="false">
+                        Sorry, that email is taken. Try another one.
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <span>Password</span>
-                    <input class="form-control" type="email" placeholder="Enter password " formControlName="email">
+                    <label class="mb-0">Username*</label>
+                    <input class="form-control" type="text" placeholder="Enter your username" formControlName="username"
+                        [ngClass]="addValidationClass(registerForm.controls.username)">
+                    <div class="invalid-feedback">
+                        Username is required and cannot start with space or '/'.
+                    </div>
+                    <div class="invalid-feedback d-block" *ngIf="false">
+                        Sorry, that username is taken. Try another one.
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <span>Confirm password</span>
-                    <input class="form-control" type="email" placeholder="Pleace confirm your password"
-                        formControlName="email">
+                    <label class="mb-0">Password*</label>
+                    <input class="form-control" type="password" placeholder="Enter your password"
+                        formControlName="password" [ngClass]="addValidationClass(registerForm.controls.password)">
+                    <div class="invalid-feedback">
+                        Your password must be at least 6 characters long. Try another one.
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="mb-0">Confirm password</label>
+                    <input class="form-control" type="password" placeholder="Pleace confirm your password"
+                        formControlName="confirmPassword"
+                        [ngClass]="addValidationClass(registerForm.controls.confirmPassword)">
+                    <div class="invalid-feedback">
+                        Passwords does not match.
+                    </div>
                 </div>
 
 
 
-
-                <p class="text-danger" *ngIf="isInvalidLoginData">Invalid email or password.</p>
-
-                <button type="submit" class="btn btn-primary w-100 mt-2 mb-2" [disabled]="registerForm.invalid">Create
-                    Account</button>
+                <button type="submit" class="btn btn-primary w-100 mt-2" [disabled]="registerForm.invalid">Create
+                    Account
+                </button>
 
                 <hr>
 
