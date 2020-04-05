@@ -47,12 +47,6 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  test() {
-
-      this.accountService.test().subscribe(result => {
-          console.log(result);
-      })
-  }
 
   navigateToRegister(){
       this.router.navigate(['./account/register']);

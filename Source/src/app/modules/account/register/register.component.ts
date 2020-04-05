@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/core/services/account.service';
-import { ThrowStmt } from '@angular/compiler';
 
 const namePattern: RegExp = /^[^\s|0-9|\'|\"|\`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\-|\+|\=|\[|\]|\{|\}|\,|\.|\<|\>|\?|\/|\\|\'|\"|\;|\:|\№].*$/;
 const emailPattern: RegExp = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
