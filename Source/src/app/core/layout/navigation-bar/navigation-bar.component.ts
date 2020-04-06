@@ -24,4 +24,6 @@ export class NavigationBarComponent implements OnInit {
   navigateToLogin(){
     this.router.navigate(['./login']);
   }
+
+
 }
